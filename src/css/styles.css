@@ -1,0 +1,16 @@
+@import url('./reset.css') layer(base);
+@import url('../components/Carousel/Carousel.css') layer(components);
+
+body {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  padding: 2rem 0 4rem 0;
+}
+
+header {
+  padding: 4rem 0;
+}
+
+main {
+  max-width: 90%;
+  margin: auto;
+}

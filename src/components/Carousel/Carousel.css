@@ -1,0 +1,23 @@
+ash-carousel {
+  display: block;
+  margin: 2rem 0;
+}
+
+ash-carousel-slides {
+  position: relative;
+}
+
+ash-carousel-slides {
+  background-color: black;
+  display: flex;
+  overflow: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+ash-carousel-slide {
+  display: flex;
+  flex: 1 0 100%;
+  justify-content: center;
+}
