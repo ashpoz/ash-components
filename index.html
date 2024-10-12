@@ -4,6 +4,7 @@
     <title>ASH Components</title>
     <link rel="stylesheet" href="./src/css/styles.css">
     <script type="module" src="./src/components/Carousel/Carousel.js" defer></script>
+    <script type="module" src="./src/components/EventTrigger/EventTrigger.js" defer></script>
     <meta charset="UTF-8">
     <meta name="description" content="A collection of Web Components">
     <meta name="keywords" content="HTML, CSS, JavaScript, Web Components, Vanilla">
@@ -38,6 +39,21 @@
             </ash-carousel-slide>
           </ash-carousel-slides>
         </ash-carousel>
+      </section>
+      <section>
+        <h2>Event Trigger</h2>
+        <p>This is an example of a Event trigger component</p>
+        <ash-event-trigger 
+          name="openalert" 
+          detail='{ "message": "This is my alert message" }'
+          trigger="button">
+          <button>Click Me!</button>
+        </ash-event-trigger>
+        <script>
+          document.addEventListener('openalert', e => {
+            alert(e.detail.message)
+          })
+        </script>
       </section>
     </main>
   </body>

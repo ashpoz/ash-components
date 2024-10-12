@@ -6,16 +6,22 @@ class EventTrigger extends HTMLElement {
   connectedCallback() {
     if (!this.getAttribute('name')) return
 
-    const event = new CustomEvent(this.getAttribute('name'), {
-      detail: this.getAttribute('detail') ?? null,
-    });
+    const detail = this.getAttribute('detail') ?? null
 
-    if (!this.querySelector(this.getAttribute(trigger))) return 
-
-    this.querySelector(this.getAttribute(trigger)).addEventListener('click', () => {
-      window.dispatchEvent(event)
-    })
-
+    try {
+      const detailJSON = JSON.parse(detail)
+      const event = new CustomEvent(this.getAttribute('name'), {
+        detail: detailJSON ?? null,
+      });
+  
+      if (!this.querySelector(this.getAttribute('trigger'))) return 
+  
+      this.querySelector(this.getAttribute('trigger')).addEventListener('click', () => {
+        document.dispatchEvent(event)
+      })
+    } catch (error) {
+      console.error('The detail attribute expects a valid JSON string.', error)
+    }
   }  
 }
 
