@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="./src/css/styles.css">
     <script type="module" src="./src/components/Carousel/Carousel.js" defer></script>
     <script type="module" src="./src/components/EventTrigger/EventTrigger.js" defer></script>
+    <script type="module" src="./src/components/Tabs/Tabs.js" defer></script>
     <meta charset="UTF-8">
     <meta name="description" content="A collection of Web Components">
     <meta name="keywords" content="HTML, CSS, JavaScript, Web Components, Vanilla">
@@ -55,6 +56,27 @@
             alert(e.detail.message)
           })
         </script>
+      </section>
+      <section>
+        <h2>Tabs</h2>
+        <p>This is accessibile Tabs component. You can try keyboard navigation by hitting your tab and arrow keys. Heavily inspired/borrowed from <a href="https://inclusive-components.design/tabbed-interfaces/" target="_blank">Inclusive Components</a> by Heydon Pickering</p>
+        <br>
+        <ash-tabs>
+          <ul role="tablist">
+            <li role="presentation" id="tab1">Tab 1</li>
+            <li role="presentation" id="tab2">Tab 2</li>
+            <li role="presentation" id="tab3">Tab 3</li>
+          </ul>
+          <div role="tabpanel" aria-labelledby="tab1" aria-selected="true">
+            <p>Tab content 1</p>
+          </div>
+          <div role="tabpanel" aria-labelledby="tab2" hidden>
+            <p>Tab content 2</p>
+          </div>
+          <div role="tabpanel" aria-labelledby="tab3" hidden>
+            <p>Tab content 3</p>
+          </div>
+        </ash-tabs>
       </section>
     </main>
   </body>

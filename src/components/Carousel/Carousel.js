@@ -2,7 +2,7 @@ class Carousel extends HTMLElement {
   constructor() {
     super()
     this.currentIndex = 0
-    this.slides = document.querySelectorAll('ash-carousel-slide')
+    this.slides = this.querySelectorAll('ash-carousel-slide')
   }
 
   scrollToSlide(index) {
@@ -19,6 +19,8 @@ class Carousel extends HTMLElement {
   }
 
   connectedCallback() {
+    console.log(this)
+
     const navigationHTML = `
     <nav>
       <button data-carousel-direction='prev'>Previous</button>
