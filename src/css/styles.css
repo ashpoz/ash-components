@@ -1,5 +1,6 @@
 @import url('./reset.css') layer(base);
 @import url('../components/Carousel/Carousel.css') layer(components);
+@import url('../components/Tabs/Tabs.css') layer(components);
 
 body {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;

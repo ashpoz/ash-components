@@ -1,0 +1,11 @@
+ash-tabs {
+  ul[role="tablist"] {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    li {
+      border: 1px solid black;
+      border-bottom: none;
+    }
+  }
+}

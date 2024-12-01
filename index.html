@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="./src/css/styles.css">
     <script type="module" src="./src/components/Carousel/Carousel.js" defer></script>
     <script type="module" src="./src/components/EventTrigger/EventTrigger.js" defer></script>
-    <script type="module" src="./src/components/Tabs/Tabs.js" defer></script>
+    <script type="module" src="./src/components/Tabs/index.js" defer></script>
     <meta charset="UTF-8">
     <meta name="description" content="A collection of Web Components">
     <meta name="keywords" content="HTML, CSS, JavaScript, Web Components, Vanilla">
@@ -62,10 +62,32 @@
         <p>This is accessibile Tabs component. You can try keyboard navigation by hitting your tab and arrow keys. Heavily inspired/borrowed from <a href="https://inclusive-components.design/tabbed-interfaces/" target="_blank">Inclusive Components</a> by Heydon Pickering</p>
         <br>
         <ash-tabs>
+          <ash-tablist>
+            <ash-tab>Tab 1</ash-tab>
+            <ash-tab>Tab 2</ash-tab>
+            <ash-tab>Tab 3</ash-tab>
+          </ash-tablist>
+          <ash-tabpanel>
+            <p>Tab content 1</p>
+          </ash-tabpanel>
+          <ash-tabpanel>
+            <p>Tab content 2</p>
+          </ash-tabpanel>
+          <ash-tabpanel>
+            <p>Tab content 3</p>
+          </ash-tabpanel>
+        </ash-tabs>
+        <!-- <ash-tabs>
           <ul role="tablist">
-            <li role="presentation" id="tab1">Tab 1</li>
-            <li role="presentation" id="tab2">Tab 2</li>
-            <li role="presentation" id="tab3">Tab 3</li>
+            <li role="presentation" id="tab1">
+              <button role="tab">Tab 1</button>
+            </li>
+            <li role="presentation" id="tab2">
+              <button role="tab">Tab 2</button>
+            </li>
+            <li role="presentation" id="tab3">
+              <button role="tab">Tab 3</button>
+            </li>
           </ul>
           <div role="tabpanel" aria-labelledby="tab1" aria-selected="true">
             <p>Tab content 1</p>
@@ -76,7 +98,7 @@
           <div role="tabpanel" aria-labelledby="tab3" hidden>
             <p>Tab content 3</p>
           </div>
-        </ash-tabs>
+        </ash-tabs> -->
       </section>
     </main>
   </body>
