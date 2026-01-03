@@ -8,8 +8,8 @@ export class TabButton extends HTMLElement {
   }
 
   connectedCallback() {
-    const tabText = this.textContent
-    this.innerHTML = `<button role="tab">${tabText}</button>`
+    this.setAttribute('role', 'tab')
+    this.setAttribute('type', 'button')
   }
 
   attributeChangedCallback(name, _oldValue, newValue) {

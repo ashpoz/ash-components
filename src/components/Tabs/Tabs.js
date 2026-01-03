@@ -1,7 +1,7 @@
 export class Tabs extends HTMLElement {
   constructor() {
     super()
-    this._currentIndex = 0
+    this.currentIndex = 0
     // this.tablist = this.querySelector('ash-tablist')
     // this.tabs = this.querySelectorAll('ash-tab')
     // this.panels = this.querySelectorAll('ash-tabpanel')
@@ -25,12 +25,11 @@ export class Tabs extends HTMLElement {
 
   connectedCallback() {
     const selectedIndex = Number(this.getAttribute('selected-index')) || 0
-    this._syncTabsAndPanels()
+    this.#syncTabsAndPanels()
     this.clearTabs()
     this.showTab(selectedIndex)
-    this.addEventListener('click', e => this._handleClick(e))
-
-    console.log(this.panels)
+    this.addEventListener('click', e => this.#handleClick(e))
+    this.#handleKeyboardActions()
   }
 
   disconnectedCallback() {
@@ -44,6 +43,15 @@ export class Tabs extends HTMLElement {
   showTab(index) {
 
     this.clearTabs()
+
+    const showTabEvent = new CustomEvent('showtab', {
+      detail: {
+        index,
+      },
+    })
+
+    this.dispatchEvent(showTabEvent)
+
     this.panels[index].hidden = false
 
     this.tabs.forEach((tab, i) => {
@@ -59,14 +67,14 @@ export class Tabs extends HTMLElement {
       }
     })
 
-    this._currentIndex = index
+    this.currentIndex = index
     this.setAttribute('selected-index', index)
   }
 
-  _syncTabsAndPanels() {
+  #syncTabsAndPanels() {
     if (!this.id) {
-      const randomString = Math.random().toString(36).substring(2, 9)
-      this.id = `tabs-${randomString}`
+      const uuid = crypto.randomUUID()
+      this.id = `tabs-${uuid}`
     }
 
     this.tabs.forEach((tab, index) => {
@@ -80,7 +88,7 @@ export class Tabs extends HTMLElement {
     })
   }
 
-  _handleClick(e) {
+  #handleClick(e) {
     const tab = e.target.closest('ash-tab')
     const index = this.tabs.indexOf(tab)
 
@@ -90,65 +98,26 @@ export class Tabs extends HTMLElement {
     this.showTab(index)
   }
 
-  // showTab(activePanel) {
-  //   this.panels.forEach(panel => {
-  //     if (activePanel === panel) {
-  //       const activeTab = this.querySelector(`#${panel.getAttribute('aria-labelledby')}`)
-  //       panel.hidden = false
-  //       activeTab.ariaSelected = true
-  //       activeTab.removeAttribute('tabindex')
-  //     } else {
-  //       const activeTab = this.querySelector(`#${panel.getAttribute('aria-labelledby')}`)
-  //       panel.hidden = true
-  //       activeTab.ariaSelected = false
-  //       activeTab.setAttribute('tabindex', '-1')
-  //     }
-  //   })
-  // }
-
-  // connectedCallback() {
-  //   this.showTab(this.panels[this.currentIndex])
-
-  //   this.tablist.addEventListener('click', e => {
-  //     const clickedTab = e.target.closest('ash-tab')
-  //     this.currentIndex = [...clickedTab.parentElement.children].indexOf(clickedTab)
-  //     const activeTabPanel = this.panels[this.currentIndex]
-
-  //     if (!activeTabPanel) return
-
-  //     console.log(e.target)
-
-  //     e.target.removeAttribute('tabindex')
-  //     this.showTab(activeTabPanel)
-  //   })
-
-  //   this.tabs.forEach(tab => { 
-  //     tab.setAttribute('tabindex', '-1')
-  //   })
-
-  //   this.panels.forEach(tab => { 
-  //     tab.setAttribute('tabindex', '-1')
-  //   })
-
-  //   this.tabs[this.currentIndex].removeAttribute('tabindex')
-
-  //   this.tablist.addEventListener('keydown', e => {
-  //     if (e.which === 40) {
-  //       // down
-  //       this.panels[this.currentIndex].focus()
-  //     }
-  //     if (e.which === 37 && this.currentIndex !== 0) {
-  //       // left
-  //       this.currentIndex--
-  //       this.tabs[this.currentIndex].focus()
-  //       this.showTab(this.panels[this.currentIndex])
-  //     }
-  //     if (e.which === 39 && this.currentIndex < this.tabs.length - 1) {
-  //       // right
-  //       this.currentIndex++
-  //       this.tabs[this.currentIndex].focus()
-  //       this.showTab(this.panels[this.currentIndex])
-  //     }
-  //   })
-  // }  
+  #handleKeyboardActions(e) {
+    this.tablist.addEventListener('keydown', e => {
+      console.log(this.panels)
+      console.log(this.currentIndex)
+      if (e.which === 40) {
+        // down
+        this.panels[this.currentIndex].focus()
+      }
+      if (e.which === 37 && this.currentIndex !== 0) {
+        // left
+        this.currentIndex--
+        this.tabs[this.currentIndex].focus()
+        this.showTab(this.currentIndex)
+      }
+      if (e.which === 39 && this.currentIndex < this.tabs.length - 1) {
+        // right
+        this.currentIndex++
+        this.tabs[this.currentIndex].focus()
+        this.showTab(this.currentIndex)
+      }
+    })
+  }
 }
