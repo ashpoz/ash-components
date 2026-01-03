@@ -3,7 +3,7 @@ export class TabPanel extends HTMLElement {
     super()
   }
 
-  connectedCallback() {    
+  connectedCallback() {
     this.setAttribute('role', 'tabpanel')
   }
 }

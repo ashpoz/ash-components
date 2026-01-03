@@ -18,7 +18,7 @@ export class Tabs extends HTMLElement {
   get tabs() {
     return [...this.querySelectorAll('ash-tab')]
   }
-  
+
   get panels() {
     return [...this.querySelectorAll('ash-tabpanel')]
   }
@@ -71,10 +71,10 @@ export class Tabs extends HTMLElement {
 
     this.tabs.forEach((tab, index) => {
       const panel = this.panels[index]
-      
+
       if (!tab.id) tab.id = `${this.id}-tab-${index}`
       if (!panel.id) panel.id = `${this.id}-panel-${index}`
-      
+
       tab.setAttribute('aria-controls', panel.id)
       panel.setAttribute('aria-labelledby', tab.id)
     })

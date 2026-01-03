@@ -7,7 +7,7 @@ export class TabButton extends HTMLElement {
     return ['selected']
   }
 
-  connectedCallback() {    
+  connectedCallback() {
     const tabText = this.textContent
     this.innerHTML = `<button role="tab">${tabText}</button>`
   }
